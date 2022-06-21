@@ -22,19 +22,19 @@ public class Programa {
 	}
 
 	public static void menu() {
-		try (Scanner leitor = new Scanner(System.in)){
+		Scanner leitor = new Scanner(System.in);
 			//leitor  = new Scanner(System.in);
-			System.out.println("|------------------------------------|");
-			System.out.println("|Escolha uma opÃ§Ã£o:                  |");		
-			System.out.println("|1 - Cadastrar                       |");
-			System.out.println("|2 - Consultar                       |");
-			System.out.println("|3 - Editar                          |");
-			System.out.println("|4 - Deletar                         |");
-			System.out.println("|5 - Sair                            |");
-			System.out.println("|____________________________________|");
+
+			System.out.println("Escolha uma opção:                  ");		
+			System.out.println("1 - Cadastrar Veículo               ");
+			System.out.println("2 - Consultar                       ");
+			System.out.println("3 - Editar                          ");
+			System.out.println("4 - Deletar                         ");
+			System.out.println("5 - Sair                            ");
+
 			
 			int opcao = leitor.nextInt();
-			System.out.println("OpÃ§Ã£o");
+			System.out.println("opção");
 				switch (opcao) {
 					case 1:
 						cadastrar();
@@ -50,33 +50,31 @@ public class Programa {
 						break;
 					case 5:
 						System.out.println("****************************************");
-						System.out.println("    SaÃ­da realizada com sucesso!        ");
+						System.out.println("    Saída realizada com sucesso!        ");
 						System.out.println("****************************************");
 						break;
 					default:
-						System.out.println("OpÃ§Ã£o invÃ¡lida, informe o valor correto:");
+						System.out.println("opção inválida, informe o valor correto:");
 	
 						menu();
 						break;
 				}
-			} catch (Exception e) {
-				System.out.println(e.getLocalizedMessage() +e.getMessage());
-			}
+			 
 		}
 	
 
 	public static void cadastrar() {
-		try (Scanner leitor = new Scanner(System.in)) {
+		Scanner leitor = new Scanner(System.in);
 			System.out.println("|---------------------------------------|");
-			System.out.println("| Insira o nome do veÃ­culo:             |");
+			System.out.println("| Insira o nome do veículo:             |");
 			System.out.println("|---------------------------------------|");
 			String nomeveiculo = leitor.nextLine();
 			System.out.println("|---------------------------------------|");
-			System.out.println("| Qual a categoria deste VeÃ­culo?       |");
+			System.out.println("| Qual a categoria deste veículo?       |");
 			System.out.println("|---------------------------------------|");
 			String catveiculo = leitor.nextLine();
 			System.out.println("|---------------------------------------|");
-			System.out.println("| Insira o valor deste VeÃ­culo em Reais:|");
+			System.out.println("| Insira o valor deste veículo em Reais:|");
 			System.out.println("|---------------------------------------|");
 			double valorveiculo = leitor.nextDouble();
 			System.out.println("Reuniu daddos");
@@ -84,7 +82,7 @@ public class Programa {
 			cadastrarveiculo.setVeiculo(nomeveiculo);
 			cadastrarveiculo.setCategoria(catveiculo);
 			cadastrarveiculo.setValor(valorveiculo);
-			System.out.println("Setou rm new obj: "+ cadastrarveiculo.toString());
+			//System.out.println("Setou rm new obj: "+ cadastrarveiculo.toString());
 			salvar(cadastrarveiculo);
 			
 			System.out.println("|---------------------------------------|");
@@ -93,29 +91,23 @@ public class Programa {
 			
 			int id = cadastrarveiculo.getId();
 			consultadireta(id);
-			leitor.close();
-		} catch (Exception e) {
-			System.out.println(e);
-			// TODO: handle exception
-		}
+			
 		menu();
 		
 	}
 
 	public static void consultar() {
 		
-		try (Scanner leitor = new Scanner(System.in)) {
-			System.out.println("|---------------------------------------|");
-			System.out.println("| Insira a ID de cadastro:              |");
-			System.out.println("|---------------------------------------|");
+		Scanner leitor = new Scanner(System.in);
+
+			System.out.println("Insira o ID de cadastro:              ");
+
 			int id = leitor.nextInt();
 			
 			consultadireta(id);
-		}
+
 		menu();
-		
-		
-		
+	
 	}
 	
 	public static void consultadireta(int id) {
@@ -123,9 +115,9 @@ public class Programa {
 		Veiculo consultaVeiculo = procurar(id);
 		
 		if(consultaVeiculo == null) {
-			System.out.println("|---------------------------------------|");
-			System.out.println("| NÃ£o foi possivel localizar esta ID!   |");
-			System.out.println("|---------------------------------------|");
+			
+			System.out.println(" Não foi possivel localizar este ID!   ");
+			
 			menu();
 		}else{
 		
@@ -143,36 +135,35 @@ public class Programa {
 	}
 	
 	public static void alterar() {
-			try (Scanner leitor = new Scanner(System.in)) {
+				Scanner leitor = new Scanner(System.in);
 				System.out.println("|---------------------------------------|");
-				System.out.println("| Insira a id de cadastro para alterar: |");
+				System.out.println("| Insira o id do cadastro para alterar: |");
 				System.out.println("|---------------------------------------|");
 				int id = leitor.nextInt();
 				consultadireta(id);
 
 
-				System.out.println("|---------------------------------------|");
-				System.out.println("| Qual opÃ§Ã£o deseja alterar?            |");
-				System.out.println("| 1 - Nome                              |");
-				System.out.println("| 2 - Categoria                         |");
-				System.out.println("| 3 - Valor em Reais                    |");
-				System.out.println("| 4 - Voltar ao menu                    |");
-				System.out.println("|---------------------------------------|");
+				
+				System.out.println(" Qual opção deseja alterar?            ");
+				System.out.println(" 1 - Nome                              ");
+				System.out.println(" 2 - Categoria                         ");
+				System.out.println(" 3 - Valor em Reais                    ");
+				System.out.println(" 4 - Voltar ao menu                    ");
+				
 				Veiculo alterarvalor = procurar(id);
 				int num = leitor.nextInt();
 				
 				switch(num) {
 				case 1:
-					System.out.println("|---------------------------------------|");
-					System.out.println("| Qual o novo nome do veÃ­culo?          |");
-					System.out.println("|---------------------------------------|");
+					
+					System.out.println("Para qual nome será alterado o veículo?");				
 					String nomeveiculo = leitor.next();
 					alterarvalor.setVeiculo(nomeveiculo);
 					editar(alterarvalor);
 					break;
 				case 2:
 					System.out.println("|---------------------------------------|");
-					System.out.println("| Qual a nova categoria do veÃ­culo?     |");
+					System.out.println("| Qual a nova categoria do veículo?     |");
 					System.out.println("|---------------------------------------|");
 					String catveiculo = leitor.next();
 					
@@ -181,7 +172,7 @@ public class Programa {
 					break;
 				case 3:
 					System.out.println("|---------------------------------------|");
-					System.out.println("| Qual o novo valor do veÃ­culo?         |");
+					System.out.println("| Qual o novo valor do veículo?         |");
 					System.out.println("|---------------------------------------|");
 					double valorveiculo = leitor.nextDouble();
 					alterarvalor.setValor(valorveiculo);
@@ -191,36 +182,31 @@ public class Programa {
 					menu();
 					break;
 				default:
-					System.out.println("|---------------------------------------|");
-					System.out.println("| Valor incorreto!                      |");
-					System.out.println("|---------------------------------------|");
+					System.out.println(" Valor incorreto!");					
 					alterar();
 					break;
 				
 				}
-				System.out.println("|---------------------------------------|");
-				System.out.println("| Alterado com sucesso!                 |");
-				System.out.println("|---------------------------------------|");
-
+				System.out.println(" Alterado com sucesso!");
 				consultadireta(id);
-			}
+			
 			menu();
 			
 		}
 	
 
 	public static void excluir() {
-		try (Scanner leitor = new Scanner(System.in)) {
+			Scanner leitor = new Scanner(System.in);
 			System.out.println("|---------------------------------------|");
 			System.out.println("| Insira o id para excluir:             |");
 			System.out.println("|---------------------------------------|");
 			int id = leitor.nextInt();
 				
 			excluir(id);
-		}
-		System.out.println("|---------------------------------------|");
-		System.out.println("| Excluido com sucesso:                 |");
-		System.out.println("|---------------------------------------|");
+		
+
+		System.out.println(" Excluído com sucesso:                 ");
+
 		menu();
 	}
 	
